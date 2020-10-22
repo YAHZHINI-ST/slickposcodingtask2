@@ -1,0 +1,68 @@
+//Changing OTP
+void key()
+{
+int index=0;
+int c;
+int key[4]=8521; //otp from the mail
+printf("\n\t\tEnter OTP:\t");
+               while((c = getch()) != key){
+       if(index < 0)
+           index = 0;
+
+       if(c == 8){
+           putch('\b');
+           putch(NULL);
+           putch('\b');
+           index--;
+       continue;
+       }
+       kiy[index++] = c;
+       putch('*');
+   }
+   kiy[index] = '\0';
+
+FILE *ky;
+ky=fopen("key.dat","w");
+fprintf(ky,"%s\n",kiy);
+printf("\n\tYour OTP is: %s\t",kiy);
+fclose(ky);
+}
+
+
+//Checking otp
+void keymatch()
+{
+    int index=0;
+    char c,kc[10],lc[10];
+    printf("\n\t\tEnter the old key:\t");
+    //scanf("%d",&lc);
+    while((c = getch()) != 13){
+       if(index < 0)
+           index = 0;
+
+       if(c == 8){
+           putch('\b');
+           putch(NULL);
+           putch('\b');
+           index--;
+       continue;
+       }
+       lc[index++] = c;
+       putch('*');
+   }
+   lc[index] = '\0';
+    FILE *ky;
+    ky=fopen("key.dat","r");
+       while(fscanf(ky,"%s",&kc)!=EOF)
+       {
+           if(strcmp(kc,lc)==0)
+           {
+               printf("\n200\n");
+           }
+           else
+            {
+            printf("\n401\n");
+           }
+       }
+       fclose(ky);
+}
